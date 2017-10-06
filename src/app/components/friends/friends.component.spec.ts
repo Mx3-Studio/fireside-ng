@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProtectedComponent } from './protected.component';
+import { FriendsComponent } from './friends.component';
 
-describe('ProtectedComponent', () => {
-  let component: ProtectedComponent;
-  let fixture: ComponentFixture<ProtectedComponent>;
+describe('FriendsComponent', () => {
+  let component: FriendsComponent;
+  let fixture: ComponentFixture<FriendsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProtectedComponent ]
+      declarations: [ FriendsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProtectedComponent);
+    fixture = TestBed.createComponent(FriendsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
