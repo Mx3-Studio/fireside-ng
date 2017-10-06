@@ -1,0 +1,24 @@
+<main class="chat">
+  <div>
+    <h1>Chat</h1>
+  </div>
+
+  <div class="chat-list" id="chat-list">
+    <!-- div *ngFor="let chat in chats | orderBy:$index:'reverse' | filter:vm.hashTag" class="clearfix" ng-class="{'my-chat': chat.uid === vm.currentUser.uid}" -->
+    <div *ngFor="let chat of chats | async" class="clearfix">
+      <span>
+        <div class="clearfix">
+          <span class="info">{{chat.displayName || ''}} <i *ngIf="chat.displayName && chat.timestamp" class="fa fa-circle" aria-hidden="true"></i> {{chat.timestamp}}</span>
+        </div>
+        <div class="chat-bubble">
+          <img class="avatar" *ngIf="chat.photoURL && chat.uid !== currentUser.uid" src="{{chat.photoURL}}" alt="avatar">
+          <span class="message">
+            <span [innerHtml]="chat.content"></span>
+            <!-- <img *ngIf="chat.sentImage" [src]="{{chat.sentImage}}" class="img-rounded" alt="User created image"> -->
+          </span>
+          <img class="avatar" *ngIf="chat.photoURL && chat.uid === currentUser.uid" src="{{chat.photoURL}}" alt="avatar">
+        </div>
+      </span>
+    </div>
+  </div>
+</main>
