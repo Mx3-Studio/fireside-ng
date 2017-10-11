@@ -9,10 +9,14 @@ import * as firebase from 'firebase/app';
 
 @Injectable()
 export class AuthenticationService {
-  public authInfo: Observable<firebase.User>;
+  private _userInfo: Observable<firebase.UserInfo>;
 
   constructor(private afAuth: AngularFireAuth) {
-    this.authInfo = this.afAuth.authState;
+    this._userInfo = this.afAuth.authState;
+  }
+
+  get userInfo(): Observable<firebase.UserInfo> {
+    return this._userInfo;
   }
 
   login() {

@@ -19,15 +19,15 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
-  it(`should have as title 'app'`, async(() => {
+  it(`should have as title 'Fireside'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app');
+    expect(app.title).toEqual('Fireside');
   }));
-  it('should render title in a h1 tag', async(() => {
+  it(`should render title in a div tag with class 'header'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Firebase OAuth Demo');
+    expect(compiled.querySelector('div.header').textContent).toContain('Fireside');
   }));
 });

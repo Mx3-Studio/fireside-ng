@@ -1,21 +1,18 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { mock, instance, when } from 'ts-mockito';
 
-// Import environment configuration
-import { environment } from '../../environments/environment';
-
-import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
+
 import { AuthenticationService } from './authentication.service';
 
 describe('AuthenticationService', () => {
+  const angularFireAuth:AngularFireAuth = mock(AngularFireAuth);
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         AuthenticationService,
-        AngularFireAuth
-      ],
-      imports: [
-        AngularFireModule.initializeApp(environment.firebase)
+        { provide: AngularFireAuth, useValue: instance(angularFireAuth) }
       ]
     });
   });
