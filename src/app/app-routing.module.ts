@@ -11,7 +11,7 @@ import { ChatsComponent } from './components/chats/chats.component';
 import { AuthGuardService } from './services/auth-guard.service';
 
 // Routes
-const appRoutes: Routes = [
+const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: '/' },
     { path: 'friends', component: FriendsComponent, canActivate: [AuthGuardService] },
     { path: 'login', component: LoginComponent },
@@ -19,4 +19,4 @@ const appRoutes: Routes = [
     { path: '', component: ChatsComponent },    
 ];
 
-export const AppRouting = RouterModule.forRoot(appRoutes);
+export const AppRouting = RouterModule.forRoot(routes);

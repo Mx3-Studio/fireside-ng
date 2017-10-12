@@ -12,12 +12,15 @@ export class AuthGuardService implements CanActivate {
   constructor(private router: Router, private auth: AuthenticationService) { }
 
   canActivate(): Observable<boolean> {
-    console.log('auth', this.auth);
-    console.log('userInfo', this.auth.userInfo);
-   return this.auth.userInfo
-     .first()
-     .map(user => !!user)
-     .do(user => !user ? this.router.navigate(['/login']) : true);
+    return this.auth.userInfo
+      .first()
+      .map(user => !!user)
+      .do(authenticated => {
+        if (!authenticated) {
+          console.log('BLOCKED URL', this.router.url);
+          this.router.navigate(['/login']);
+        }
+      });
   }
 
 }
