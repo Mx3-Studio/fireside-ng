@@ -1,3 +1,31 @@
-<p>
-    friends works!
-</p>
+<main class="friends">
+    <div>
+        <h1>Friends</h1>
+        <div *ngFor="let friend of friends | async" class="clearfix">
+            <a href="/friends/{{friend.profile.uid}}">
+                {{friend.profile.displayName}} - {{friend.profile.email}}
+            </a>
+        </div>
+    </div>
+
+    <div>
+        <form>
+            <h2>Search</h2>
+            <div class="input-group">
+                <input type="text" class="form-control" name="query" ngModel>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" (click)="searchUsers(query)">Search</button>
+                </span>
+            </div>
+        </form>
+        <div *ngIf="searched">
+            <h3>Search Results</h3>
+            <div *ngIf="searchResults.length === 0">Sorry, we didn't find any matches.</div>
+            <ul *ngFor="let result of searchResults | async" class="clearfix">
+                <li>
+                    <a href="/friends/{{result.uid}}">{{result.displayName}} - {{result.email}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>

@@ -20,6 +20,8 @@ import { LoginComponent } from './components/login/login.component';
 import { FriendsComponent } from './components/friends/friends.component';
 import { CheckComponent } from './components/check/check.component';
 import { ChatsComponent } from './components/chats/chats.component';
+import { ProfileService } from './services/profile.service';
+import { FriendsService } from './services/friends.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,12 @@ import { ChatsComponent } from './components/chats/chats.component';
     AngularFireAuthModule,
     AngularFireDatabaseModule
   ],
-  providers: [AuthenticationService, AuthGuardService],
+  providers: [
+    AuthenticationService,
+    AuthGuardService,
+    ProfileService,
+    FriendsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
