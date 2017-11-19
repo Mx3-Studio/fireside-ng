@@ -1,11 +1,21 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { Mock } from 'ts-mocks';
+
+import { AngularFireDatabase } from 'angularfire2/database';
 
 import { ProfileService } from './profile.service';
 
 describe('ProfileService', () => {
+  let mockAngularFireDb: Mock<AngularFireDatabase>;
+
   beforeEach(() => {
+    mockAngularFireDb = new Mock<AngularFireDatabase>();
+
     TestBed.configureTestingModule({
-      providers: [ProfileService]
+      providers: [
+        ProfileService,
+        { provide: AngularFireDatabase, useValue: mockAngularFireDb.Object },
+      ]
     });
   });
 

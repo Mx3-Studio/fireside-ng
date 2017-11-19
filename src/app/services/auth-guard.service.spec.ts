@@ -13,7 +13,6 @@ describe('AuthGuardService', () => {
 
   describe('canActivate a valid user', () => {
     let mockAuthService: Mock<AuthenticationService>;
-    let authService: AuthenticationService;
     const user: firebase.UserInfo = {
       displayName: "Test User",
       email: "user@testers.com",
@@ -26,14 +25,13 @@ describe('AuthGuardService', () => {
     beforeEach(() => {
       mockAuthService = new Mock<AuthenticationService>();
       mockAuthService.setup(o => o.userInfo).is(Observable.of(user));
-      authService = mockAuthService.Object;
 
       TestBed.configureTestingModule({
         imports: [
           RouterTestingModule
         ],
         providers: [
-          { provide: AuthenticationService, useValue: authService },
+          { provide: AuthenticationService, useValue: mockAuthService.Object },
           AuthGuardService
         ]
       }).compileComponents();
