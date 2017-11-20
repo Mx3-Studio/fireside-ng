@@ -2,7 +2,7 @@
     <div>
         <h1>Friends</h1>
         <div *ngFor="let friend of friends | async" class="clearfix">
-            <a href="/friends/{{friend.profile.uid}}">
+            <a [routerLink]="['friends', friend.profile.uid]">
                 {{friend.profile.displayName}} - {{friend.profile.email}}
             </a>
         </div>
@@ -23,7 +23,7 @@
             <div *ngIf="searchResults.length === 0">Sorry, we didn't find any matches.</div>
             <ul *ngFor="let result of searchResults | async" class="clearfix">
                 <li>
-                    <a href="/friends/{{result.uid}}">{{result.displayName}} - {{result.email}}</a>
+                    <a [routerLink]="['friends', result.uid]">{{result.displayName}} - {{result.email}}</a>
                 </li>
             </ul>
         </div>

@@ -20,12 +20,12 @@ export class AuthenticationService {
   }
 
   login() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then((user) => { console.log(user); });
+    return this.afAuth.auth
+      .signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 
   logout() {
-    this.afAuth.auth.signOut().then(() => { console.log('logged out') });
+    return this.afAuth.auth.signOut();
   }
 
 }

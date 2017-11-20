@@ -8,28 +8,24 @@
       </button>
     </div>
     <div class="items" [ngClass]="{'show': nav.mobileIsOpen}">
-      <span *ngFor="let link of nav.links">
-      <a href="{{link.route}}" 
-        (click)="closeNav()" *ngIf="(user && link.auth === true) || (link.auth === 'public' || !user && link.auth === false) ">
-        {{link.title}}
-      </a>
-    </span>
-      <a *ngIf="user" role="button" (click)="logout()">Logout</a>
+      <ng-container *ngFor="let link of nav.links">
+        <a [routerLink]="[link.route]" (click)="closeNav()" *ngIf="((user | async) && link.auth) || (link.auth === 'public') || (!(user | async) && !link.auth)">
+          {{link.title}}
+        </a>
+      </ng-container>
     </div>
   </nav>
 
-  <div id="content" autoscroll="true"><router-outlet></router-outlet></div>
+  <div id="content" autoscroll="true">
+    <router-outlet></router-outlet>
+  </div>
 
   <footer class="clearfix">
     <div class="social-media">
-      <!-- <a target="_blank" href="https://github.com/Mx3-Studio/fireside">
+      <a target="_blank" href="https://github.com/Mx3-Studio/fireside-ng">
         <i class="fa fa-github" aria-hidden="true"></i>
         <span>GitHub</span>
       </a>
-      <a target="_blank" href="https://playingwithfirelive.slack.com/">
-        <i class="fa fa-slack" aria-hidden="true"></i>
-        <span>Slack<span>
-      </a> -->
     </div>
     <div class="copyright">
       Copyright &copy; 3xM Studio {{today.getFullYear()}}

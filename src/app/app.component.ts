@@ -1,4 +1,10 @@
 import { Component } from '@angular/core';
+import { Router } from "@angular/router";
+
+import { Observable } from 'rxjs/Observable';
+import * as firebase from 'firebase/app';
+
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +13,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = "Fireside";
+  today = new Date();
+
+  constructor(private router: Router, private auth: AuthenticationService) {
+  }
 
   nav = {
     mobileIsOpen: false,
@@ -22,7 +32,7 @@ export class AppComponent {
       title: 'Friends',
       active: 'friends',
       order: 2,
-      auth: false
+      auth: true
     },
     {
       route: '/login',
@@ -30,19 +40,26 @@ export class AppComponent {
       active: 'login',
       order: 3,
       auth: false
+    },
+    {
+      route: '/logout',
+      title: 'Logout',
+      active: 'logout',
+      order: 3,
+      auth: true
     }],
   };
 
-  closeNav = function() {
+  get user(): Observable<firebase.UserInfo> {
+    return this.auth.userInfo;
+  }
+
+  closeNav = function () {
     this.nav.mobileIsOpen = false;
-  };
+  }
 
-  today = new Date();
-
-  toggleMenu = function(isOpen) {
+  toggleMenu = function (isOpen) {
     this.nav.mobileIsOpen = isOpen ? false : true;
-  };
-
-  logout = function() {}
+  }
 
 }

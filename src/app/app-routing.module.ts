@@ -15,6 +15,7 @@ const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: '/' },
     { path: 'friends', component: FriendsComponent, canActivate: [AuthGuardService] },
     { path: 'login', component: LoginComponent },
+    { path: 'logout', component: LoginComponent },
     { path: 'check', component: CheckComponent },
     { path: '', component: ChatsComponent },    
 ];

@@ -40,9 +40,4 @@ describe('LoginComponent', () => {
     expect(authService.login).toHaveBeenCalled();
   });
 
-  it('can logout', () => {
-    component.logout();
-    expect(authService.logout).toHaveBeenCalled();
-  });
-
 });

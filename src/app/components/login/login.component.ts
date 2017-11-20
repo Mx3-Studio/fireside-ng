@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from "@angular/router";
 
 import { AuthenticationService } from '../../services/authentication.service';
 
@@ -8,18 +9,22 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  user;
+  error;
 
-  constructor(private auth: AuthenticationService) {
-    this.user = auth.userInfo;
+  constructor(private activeRoute: ActivatedRoute, private router: Router, private auth: AuthenticationService) {
+    activeRoute.url.subscribe((url) => {
+      if (url[0].path === 'logout') {
+        this.auth.logout().then(() => { this.router.navigate(['login']); });
+      }
+    })
   }
 
   login() {
-    this.auth.login();
-  }
-
-  logout() {
-    this.auth.logout();
+    this.auth.login()
+      .then(
+        (user) => { this.router.navigate(['']) },
+        (reason) => { this.error = reason; }
+      );
   }
 
 }
