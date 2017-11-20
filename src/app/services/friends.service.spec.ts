@@ -26,4 +26,9 @@ describe('FriendsService', () => {
   it('should be created', inject([FriendsService], (service: FriendsService) => {
     expect(service).toBeTruthy();
   }));
+
+  it('should return a list of friends', inject([FriendsService], (service: FriendsService) => {
+
+  }));
+
 });

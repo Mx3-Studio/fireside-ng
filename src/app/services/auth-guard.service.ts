@@ -17,8 +17,7 @@ export class AuthGuardService implements CanActivate {
       .map(user => !!user)
       .do(authenticated => {
         if (!authenticated) {
-          console.log('BLOCKED URL', this.router.url);
-          this.router.navigate(['/login']);
+          this.router.navigate(['login']);
         }
       });
   }

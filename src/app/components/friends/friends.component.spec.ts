@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
 import { Mock } from 'ts-mocks';
 
 import * as firebase from 'firebase/app';
@@ -33,6 +34,7 @@ describe('FriendsComponent', () => {
     mockAuthService.setup(o => o.userInfo).is(Observable.of(user));
 
     TestBed.configureTestingModule({
+      imports: [ RouterModule ],
       declarations: [ FriendsComponent ],
       providers: [
         { provide: AuthenticationService, useValue: mockAuthService.Object },

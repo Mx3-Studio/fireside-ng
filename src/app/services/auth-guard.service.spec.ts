@@ -68,7 +68,7 @@ describe('AuthGuardService', () => {
 
       service.canActivate().subscribe(result => {
         expect(result).toBe(false);
-        expect(router.navigate).toHaveBeenCalledWith([ '/login' ]);
+        expect(router.navigate).toHaveBeenCalledWith([ 'login' ]);
       });
     }));
 

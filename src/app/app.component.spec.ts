@@ -1,10 +1,17 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Mock } from 'ts-mocks';
+
+import { AuthenticationService } from './services/authentication.service';
 
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  let mockAuthService: Mock<AuthenticationService>;
+
   beforeEach(async(() => {
+    mockAuthService = new Mock<AuthenticationService>();
+
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
@@ -12,6 +19,9 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      providers: [
+        { provide: AuthenticationService, useValue: mockAuthService.Object },
+      ]
     }).compileComponents();
   }));
   it('should create the app', async(() => {
